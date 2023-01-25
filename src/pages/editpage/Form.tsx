@@ -3,19 +3,14 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import useStore from '../../store'
 import IUpdatePostProps from '../../interface/IUpdatePostProp'
 import IPost from '../../interface/IPost'
-import SButton from '../../components/SButton'
 import useUpdatePost from './useUpdatePost'
-import SInput from '../../components/SInput'
-import tw from 'tailwind-styled-components'
-import STextArea from '../../components/STextArea'
+import classNames from '../../components/ui'
+import cn from 'classnames'
 import { useEffect } from 'react'
 
 interface IProps {
   post: IPost | undefined
 }
-
-const STextAreaB = tw(STextArea)`h-80`
-const STextAreaS = tw(STextArea)`h-60`
 
 const Form = ({ post }: IProps) => {
   const { register, handleSubmit } = useForm<IUpdatePostProps>({
@@ -48,12 +43,13 @@ const Form = ({ post }: IProps) => {
         <label htmlFor="title" className="font-mono font-bold text-gray-500">
           Title
         </label>
-        <SInput
+        <input
           autoComplete="off"
           id="title"
           type="text"
           placeholder="Enter title..."
           {...register('title')}
+          className={classNames.input}
         />
       </div>
 
@@ -61,7 +57,8 @@ const Form = ({ post }: IProps) => {
         <label htmlFor="body" className="font-mono font-bold text-gray-500">
           Body
         </label>
-        <STextAreaB
+        <textarea
+          className={cn(classNames.textarea, 'h-80')}
           id="body"
           placeholder="Enter body..."
           {...register('body')}
@@ -73,7 +70,8 @@ const Form = ({ post }: IProps) => {
           Summary
         </label>
 
-        <STextAreaS
+        <textarea
+          className={cn(classNames.textarea, 'h-60')}
           id="summary"
           placeholder="Enter summary ..."
           {...register('summary')}
@@ -84,7 +82,7 @@ const Form = ({ post }: IProps) => {
         <label htmlFor="Tags" className="font-mono font-bold text-gray-500">
           Tags <span className="italic">(separate by comma)</span>
         </label>
-        <SInput type="text" {...register('tags')} />
+        <input className={classNames.input} type="text" {...register('tags')} />
       </div>
 
       <div className="flex gap-3 content-center">
@@ -95,7 +93,9 @@ const Form = ({ post }: IProps) => {
       </div>
 
       <div className="flex justify-center content-center my-6">
-        <SButton type="submit">Update Post</SButton>
+        <button className={classNames.button} type="submit">
+          Update Post
+        </button>
       </div>
     </form>
   )

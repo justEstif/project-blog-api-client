@@ -9,12 +9,8 @@ const useUpdatePost = () => {
   useEffect(() => {
     const handleUpdate = async () => {
       if (post) {
-        try {
-          await updatePost(post)
-          setSuccess(true)
-        } catch (error) {
-          throw error
-        }
+        await updatePost(post)
+        setSuccess(true)
       }
     }
     handleUpdate()

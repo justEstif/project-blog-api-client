@@ -3,9 +3,7 @@ import Post from './Post'
 import { nanoid } from 'nanoid'
 import useGetPosts from '../../hooks/useGetPosts'
 
-interface Props {}
-
-const HomePage = ({}: Props) => {
+const HomePage = () => {
   const posts = useGetPosts()
   // TODO: Add a posts container and style the page
   return (

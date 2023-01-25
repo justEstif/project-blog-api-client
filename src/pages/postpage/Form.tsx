@@ -1,23 +1,7 @@
 import { useForm } from 'react-hook-form'
 import IComment from '../../interface/IComment'
-import tw from 'tailwind-styled-components'
 import useStore from '../../store'
-
-const SInput = tw.input`
-    max-w-xs
-    appearance-none
-    bg-gray-200
-    border-2
-    border-gray-200
-    rounded
-    py-2
-    px-4
-    text-gray-700
-    leading-tight
-    focus:outline-none
-    focus:bg-white
-    focus:border-purple-500
-  `
+import cn from 'classnames'
 
 interface IProps {
   setBody: React.Dispatch<React.SetStateAction<string>>
@@ -31,7 +15,8 @@ const Form = ({ setBody }: IProps) => {
 
   return (
     <form onSubmit={onSubmit}>
-      <SInput
+      <input
+        className={classNames.input}
         autoComplete="off"
         id="text"
         type="text"
@@ -44,3 +29,21 @@ const Form = ({ setBody }: IProps) => {
 }
 
 export default Form
+
+const classNames = {
+  input: cn(
+    'max-w-xs',
+    'appearance-none',
+    'bg-gray-200',
+    'border-2',
+    'border-gray-200',
+    'rounded',
+    'py-2',
+    'px-4',
+    'text-gray-700',
+    'leading-tight',
+    'focus:outline-none',
+    'focus:bg-white',
+    'focus:border-purple-500'
+  )
+}

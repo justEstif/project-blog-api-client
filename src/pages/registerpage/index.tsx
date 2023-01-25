@@ -1,15 +1,14 @@
-interface IProps {}
-import SHeader from '../../components/SHeader'
 import Form from './Form'
 import useRegiser from '../../hooks/useRegister'
+import classNames from '../../components/ui'
 
-const RegisterPage = ({}: IProps) => {
+const RegisterPage = () => {
   const { message, setRegister } = useRegiser()
   return (
     <>
-      <SHeader>
+      <header className={classNames.header}>
         <p className="text-5xl capitalize">Register</p>
-      </SHeader>
+      </header>
       <Form setRegister={setRegister} message={message} />
     </>
   )

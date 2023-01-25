@@ -3,14 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import useStore from '../../store'
 import ICreatePostProp from '../../interface/ICreatePostProp'
 import useCreatePost from './useCreatePost'
-import SButton from '../../components/SButton'
-import SInput from '../../components/SInput'
-import tw from 'tailwind-styled-components'
-import STextArea from '../../components/STextArea'
 import { useEffect } from 'react'
-
-const STextAreaB = tw(STextArea)`h-80`
-const STextAreaS = tw(STextArea)`h-60`
+import classNames from '../../components/ui'
+import cn from 'classnames'
 
 const CreatePage = () => {
   const state = useStore((state) => state)
@@ -36,11 +31,12 @@ const CreatePage = () => {
         <label htmlFor="title" className="font-mono font-bold text-gray-500">
           Title
         </label>
-        <SInput
+        <input
           autoComplete="off"
           id="title"
           type="text"
           placeholder="Enter title..."
+          className={classNames.input}
           {...register('title')}
         />
       </div>
@@ -49,7 +45,8 @@ const CreatePage = () => {
         <label htmlFor="body" className="font-mono font-bold text-gray-500">
           Body
         </label>
-        <STextAreaB
+        <textarea
+          className={cn(classNames.textarea, 'h-80')}
           id="body"
           placeholder="Enter body..."
           {...register('body')}
@@ -61,10 +58,11 @@ const CreatePage = () => {
           Summary
         </label>
 
-        <STextAreaS
+        <textarea
           id="summary"
           placeholder="Enter summary ..."
           {...register('summary')}
+          className={cn(classNames.textarea, 'h-60')}
         />
       </div>
 
@@ -72,7 +70,7 @@ const CreatePage = () => {
         <label htmlFor="Tags" className="font-mono font-bold text-gray-500">
           Tags <span className="italic">(separate by comma)</span>
         </label>
-        <SInput type="text" {...register('tags')} />
+        <input type="text" {...register('tags')} className={classNames.input} />
       </div>
 
       <div className="flex gap-3 content-center">
@@ -83,7 +81,9 @@ const CreatePage = () => {
       </div>
 
       <div className="flex justify-center content-center my-6">
-        <SButton type="submit">Create Post</SButton>
+        <button className={classNames.button} type="submit">
+          Create Post
+        </button>
       </div>
     </form>
   )

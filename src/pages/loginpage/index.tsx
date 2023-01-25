@@ -1,17 +1,15 @@
-import SHeader from '../../components/SHeader'
 import Form from './Form'
 import useLogin from '../../hooks/useLogin'
+import classNames from '../../components/ui'
 
-interface IProps { }
-
-const LoginPage = ({ }: IProps) => {
+const LoginPage = () => {
   const { message, setLogin } = useLogin()
 
   return (
     <>
-      <SHeader>
+      <header className={classNames.header}>
         <p className="text-5xl capitalize">Login</p>
-      </SHeader>
+      </header>
 
       <Form setLogin={setLogin} message={message} />
     </>

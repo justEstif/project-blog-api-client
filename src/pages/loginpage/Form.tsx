@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import tw from 'tailwind-styled-components'
+import cn from 'classnames'
 import ILogin from '../../interface/ILogin'
 import { Dispatch, SetStateAction } from 'react'
 
@@ -8,35 +8,6 @@ interface IProps {
   setLogin: Dispatch<SetStateAction<ILogin>>
   message: string
 }
-
-const SInput = tw.input`
-    max-w-xs
-    appearance-none
-    bg-gray-200
-    border-2
-    border-gray-200
-    rounded
-    py-2
-    px-4
-    text-gray-700
-    leading-tight
-    focus:outline-none
-    focus:bg-white
-    focus:border-purple-500
-  `
-
-const SButton = tw.button`
-    shadow
-    bg-purple-500
-    hover:bg-purple-400
-    focus:shadow-outline
-    focus:outline-none
-    text-white
-    font-bold
-    py-2
-    px-4
-    rounded
-  `
 
 const Form = ({ setLogin, message }: IProps) => {
   const { register, handleSubmit } = useForm<ILogin>()
@@ -50,7 +21,8 @@ const Form = ({ setLogin, message }: IProps) => {
           <label htmlFor="email" className="font-mono font-bold text-gray-500">
             Email
           </label>
-          <SInput
+          <input
+            className={classNames.formInput}
             autoComplete="off"
             id="email"
             type="email"
@@ -65,7 +37,8 @@ const Form = ({ setLogin, message }: IProps) => {
           >
             Password
           </label>
-          <SInput
+          <input
+            className={classNames.formInput}
             autoComplete="off"
             id="password"
             type="password"
@@ -82,7 +55,9 @@ const Form = ({ setLogin, message }: IProps) => {
               </span>
             </button>
           </div>
-          <SButton type="submit">Login</SButton>
+          <button className={classNames.formButton} type="submit">
+            Login
+          </button>
         </div>
         {/*  TODO: style error message */}
         {message ?? <div>{message}</div>}
@@ -92,3 +67,33 @@ const Form = ({ setLogin, message }: IProps) => {
 }
 
 export default Form
+
+const classNames = {
+  formButton: cn(
+    'shadow',
+    'bg-purple-500',
+    'hover: bg - purple - 400',
+    'focus: shadow - outline',
+    'focus: outline - none',
+    'text-white',
+    'font-bold',
+    'py-2',
+    'px-4',
+    'rounded'
+  ),
+  formInput: cn(
+    'max-w-xs',
+    'appearance-none',
+    'bg-gray-200',
+    'border-2',
+    'border-gray-200',
+    'rounded',
+    'py-2',
+    'px-4',
+    'text-gray-700',
+    'leading-tight',
+    'focus:outline-none',
+    'focus:bg-white',
+    'focus:border-purple-500'
+  )
+}

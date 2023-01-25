@@ -1,10 +1,12 @@
 import { useLocation, Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import useStore from '../../store'
-import SHeader from '../../components/SHeader'
 import useGetPost from '../../hooks/useGetPost'
 import useDeletePost from './useDeletepost'
-import SButton from '../../components/SButton'
+// import cn from 'classnames'
+import classNames from '../../components/ui'
+// import SButton from '../../components/SButton'
+// import SHeader from '../../components/SHeader'
 import { useEffect } from 'react'
 
 interface IPostId {
@@ -19,7 +21,7 @@ const DeletePage = () => {
   const postId = useLocation().state
   const { post } = useGetPost(postId)
   const token = store.user?.token.token || null
-  const onSubmit = handleSubmit((_) => {
+  const onSubmit = handleSubmit(() => {
     if (token) {
       setDeleteData({
         postId: postId,
@@ -33,17 +35,19 @@ const DeletePage = () => {
   }, [success])
   return (
     <>
-      <SHeader>
+      <header className={classNames.header}>
         <p className="text-5xl capitalize">Delete Post</p>
         <p className="text-3xl text-slate-700">Title: {post?.title}</p>
-      </SHeader>
+      </header>
 
       <div className="flex justify-center content-center">
         <form onSubmit={onSubmit}>
           <div className="flex gap-4">
-            <SButton type="submit">Confirm</SButton>
+            <button className={classNames.button} type="submit">
+              Confirm
+            </button>
             <Link to={`/owner`}>
-              <SButton $cancel={true}>Cancel</SButton>
+              <button className={classNames.cancelButton}>Cancel</button>
             </Link>
           </div>
         </form>

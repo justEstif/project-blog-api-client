@@ -1,6 +1,5 @@
 import { useLocation } from 'react-router-dom'
 import useGetPost from '../../hooks/useGetPost'
-import tw from 'tailwind-styled-components'
 import Comments from './Comments'
 import Header from './Header'
 import useComment from '../../hooks/useComment'
@@ -34,18 +33,13 @@ const PostPage = () => {
     fetchComments()
   }, [body])
 
-  const SBody = tw.section`
-    [&>*]:py-5
-    mx-auto
-  `
-
   return (
     <>
       <Header post={post} />
-      <SBody>
+      <div className=" [&>*]:py-5 mx-auto ">
         <div className="border-b-2">{post?.body}</div>
         <Comments Form={<Form setBody={setBody} />} postComments={comments} />
-      </SBody>
+      </div>
     </>
   )
 }

@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import tw from 'tailwind-styled-components'
 import { Dispatch, SetStateAction } from 'react'
 import IRegister from '../../interface/IRegister'
+import cn from 'classnames'
 
 interface Props {
   setRegister: Dispatch<SetStateAction<IRegister>>
@@ -11,34 +11,6 @@ interface Props {
 
 const Form = ({ setRegister, message }: Props) => {
   const { register, handleSubmit } = useForm<IRegister>()
-  const SInput = tw.input`
-    max-w-xs
-    appearance-none
-    bg-gray-200
-    border-2
-    border-gray-200
-    rounded
-    py-2
-    px-4
-    text-gray-700
-    leading-tight
-    focus:outline-none
-    focus:bg-white
-    focus:border-purple-500
-  `
-
-  const SButton = tw.button`
-    shadow
-    bg-purple-500
-    hover:bg-purple-400
-    focus:shadow-outline
-    focus:outline-none
-    text-white
-    font-bold
-    py-2
-    px-4
-    rounded
-  `
 
   return (
     <div className="flex flex-col justify-center content-center">
@@ -50,7 +22,8 @@ const Form = ({ setRegister, message }: Props) => {
           <label htmlFor="email" className="font-mono font-bold text-gray-500">
             Email
           </label>
-          <SInput
+          <input
+            className={classNames.formInput}
             autoComplete="off"
             id="email"
             type="email"
@@ -59,10 +32,14 @@ const Form = ({ setRegister, message }: Props) => {
           />
         </div>
         <div className="flex flex-col gap-3">
-          <label htmlFor="username" className="font-mono font-bold text-gray-500">
+          <label
+            htmlFor="username"
+            className="font-mono font-bold text-gray-500"
+          >
             Username
           </label>
-          <SInput
+          <input
+            className={classNames.formInput}
             autoComplete="off"
             id="username"
             type="text"
@@ -77,7 +54,8 @@ const Form = ({ setRegister, message }: Props) => {
           >
             Password
           </label>
-          <SInput
+          <input
+            className={classNames.formInput}
             autoComplete="off"
             id="password"
             type="password"
@@ -94,7 +72,9 @@ const Form = ({ setRegister, message }: Props) => {
               </span>
             </button>
           </div>
-          <SButton type="submit">Register</SButton>
+          <button className={classNames.formButton} type="submit">
+            Register
+          </button>
         </div>
         {/*  TODO: style error message */}
         {message ?? <div>{message}</div>}
@@ -105,3 +85,32 @@ const Form = ({ setRegister, message }: Props) => {
 
 export default Form
 
+const classNames = {
+  formButton: cn(
+    'shadow',
+    'bg-purple-500',
+    'hover: bg - purple - 400',
+    'focus: shadow - outline',
+    'focus: outline - none',
+    'text-white',
+    'font-bold',
+    'py-2',
+    'px-4',
+    'rounded'
+  ),
+  formInput: cn(
+    'max-w-xs',
+    'appearance-none',
+    'bg-gray-200',
+    'border-2',
+    'border-gray-200',
+    'rounded',
+    'py-2',
+    'px-4',
+    'text-gray-700',
+    'leading-tight',
+    'focus:outline-none',
+    'focus:bg-white',
+    'focus:border-purple-500'
+  )
+}

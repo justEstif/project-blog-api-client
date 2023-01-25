@@ -1,7 +1,7 @@
-import SHeader from '../../components/SHeader'
 import { nanoid } from 'nanoid'
 import getFormattedDate from '../../utils/getFormattedDate'
 import IPost from '../../interface/IPost'
+import classNames from '../../components/ui'
 
 interface IProps {
   post: IPost | undefined
@@ -18,11 +18,11 @@ const Header = ({ post }: IProps) => {
   ))
 
   return (
-    <SHeader>
+    <header className={classNames.header}>
       <p className="text-5xl capitalize">{post?.title}</p>
       <p className="uppercase text-md">{postPubDate}</p>
       <div className="flex gap-3 justify-center content-center">{postTags}</div>
-    </SHeader>
+    </header>
   )
 }
 
