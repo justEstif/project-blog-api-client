@@ -15,14 +15,8 @@ interface ICustomError {
 
 export const loginUser = async (login: ILogin) => {
   const getUrlResponse = async (login: ILogin) => {
-    try {
-      const { data } = await axios.post('/api/login', { ...login })
-      return data
-    } catch (error) {
-      // TODO: The error needs to be handled here
-      // TODO: the way user is added to store needs to be fixed
-      throw error
-    }
+    const { data } = await axios.post('/api/login', { ...login })
+    return data
   }
 
   const handleUrlResponse = async (): Promise<IAuthUser | string> => {
@@ -43,42 +37,26 @@ export const loginUser = async (login: ILogin) => {
 export const logoutUser = async (token: string) => {
   // @route POST /api/logout
   const getUrlResponse = async () => {
-    try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`
       }
-      // TODO: send the post with token
-      const { data } = await axios.get('/api/logout', config)
-      return data
-    } catch (error) {
-      throw error
     }
+    // TODO: send the post with token
+    const { data } = await axios.get('/api/logout', config)
+    return data
   }
 
   const handleUrlResponse = async () => {
-    try {
-      return await getUrlResponse()
-    } catch (error) {
-      // TODO: Better error handling
-      console.log(error)
-      return error
-    }
+    return await getUrlResponse()
   }
   await handleUrlResponse()
 }
 
 export const registerUser = async (register: IRegister) => {
   const getUrlResponse = async (register: IRegister) => {
-    try {
-      const { data } = await axios.post('/api/register', { ...register })
-      return data
-    } catch (error) {
-      // TODO: The error needs to be handled here
-      // TODO: the way user is added to store needs to be fixed
-      throw error
-    }
+    const { data } = await axios.post('/api/register', { ...register })
+    return data
   }
 
   const handleUrlResponse = async (): Promise<IAuthUser | string> => {

@@ -22,25 +22,21 @@ export const createPost = async ({
   // NOTE The backend might have a bug that doesn't let it take a published boolean
 
   const apiUrl = `/api/posts/`
-  try {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
     }
-
-    const newPost: IPost = {
-      published,
-      title,
-      tags: getTags(tags),
-      summary,
-      body
-    }
-
-    await axios.post(apiUrl, { ...newPost }, config)
-  } catch (error) {
-    throw error
   }
+
+  const newPost: IPost = {
+    published,
+    title,
+    tags: getTags(tags),
+    summary,
+    body
+  }
+
+  await axios.post(apiUrl, { ...newPost }, config)
 }
 
 export const updatePost = async ({
@@ -55,38 +51,30 @@ export const updatePost = async ({
   // NOTE The backend might have a bug that doesn't let it take a published boolean
 
   const apiUrl = `/api/posts/${postId}`
-  try {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
     }
-
-    const newPost: IPost = {
-      published,
-      title,
-      tags: getTags(tags),
-      summary,
-      body
-    }
-
-    const response = await axios.put(apiUrl, { ...newPost }, config)
-    return response.data
-  } catch (error) {
-    throw error
   }
+
+  const newPost: IPost = {
+    published,
+    title,
+    tags: getTags(tags),
+    summary,
+    body
+  }
+
+  const response = await axios.put(apiUrl, { ...newPost }, config)
+  return response.data
 }
 
 export const deletePost = async ({ postId, token }: IDeletePostProps) => {
   const urlwithProxy = `/api/posts/${postId}`
-  try {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
     }
-    await axios.delete(urlwithProxy, config)
-  } catch (error) {
-    throw error
   }
+  await axios.delete(urlwithProxy, config)
 }
