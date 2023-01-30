@@ -1,9 +1,3 @@
-/**
- * TODO: create function for creating post
- * TODO: create function for updating post
- * TODO: create function for deleting post
- * */
-
 import axios from 'axios'
 import IPost from '../interface/IPost'
 import ICreatePostProp from '../interface/ICreatePostProp'
@@ -21,7 +15,8 @@ export const createPost = async ({
 }: ICreatePostProp) => {
   // NOTE The backend might have a bug that doesn't let it take a published boolean
 
-  const apiUrl = `/api/posts/`
+  const apiUrl = `${import.meta.env.VITE_API_BASE_URL}/posts/`
+
   const config = {
     headers: {
       Authorization: `Bearer ${token}`
@@ -50,7 +45,7 @@ export const updatePost = async ({
 }: IUpdatePostProps) => {
   // NOTE The backend might have a bug that doesn't let it take a published boolean
 
-  const apiUrl = `/api/posts/${postId}`
+  const apiUrl = `${import.meta.env.VITE_API_BASE_URL}/posts/${postId}`
   const config = {
     headers: {
       Authorization: `Bearer ${token}`
@@ -70,7 +65,7 @@ export const updatePost = async ({
 }
 
 export const deletePost = async ({ postId, token }: IDeletePostProps) => {
-  const urlwithProxy = `/api/posts/${postId}`
+  const urlwithProxy = `${import.meta.env.VITE_API_BASE_URL}/posts/${postId}`
   const config = {
     headers: {
       Authorization: `Bearer ${token}`

@@ -4,7 +4,7 @@ import IPost from '../interface/IPost'
 
 // DONE: Check if there is an active user -> user token
 export const getPosts = async (token: string): Promise<IPost[] | []> => {
-  const urlwithProxy = '/api/posts'
+  const urlwithProxy = `${import.meta.env.VITE_API_BASE_URL}/posts`
   const config = {
     headers: {
       Authorization: `Bearer ${token}`
@@ -20,7 +20,7 @@ export const getPost = async (postID: string, token: string) => {
     post: IPost[]
     comments: IComment[]
   }
-  const urlwithProxy = `/api/posts/${postID}`
+  const urlwithProxy = `${import.meta.env.VITE_API_BASE_URL}/posts/${postID}`
   const config = {
     headers: {
       Authorization: `Bearer ${token}`
@@ -40,7 +40,9 @@ export const createComment = async (
   body: string,
   user: string
 ) => {
-  const urlwithProxy = `/api/posts/${postID}/comment`
+  const urlwithProxy = `${
+    import.meta.env.VITE_API_BASE_URL
+  }/posts/${postID}/comment`
   const config = {
     headers: {
       Authorization: `Bearer ${token}`
