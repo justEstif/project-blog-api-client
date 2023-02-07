@@ -17,7 +17,7 @@ const useRegiser = () => {
       try {
         const response = await registerUser(register)
         if (typeof response === 'string') {
-          setMessage(message)
+          setMessage(response)
         } else {
           store.loginUser(response)
         }

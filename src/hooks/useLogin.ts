@@ -15,14 +15,12 @@ const useLogin = () => {
     const handleLogin = async () => {
       const response = await loginUser(login)
       if (typeof response === 'string') {
-        setMessage(message)
+        setMessage(response)
       } else {
         store.loginUser(response)
       }
     }
-    login.email !== '' &&
-      login.password !== '' &&
-      handleLogin()
+    login.email !== '' && login.password !== '' && handleLogin()
   }, [login])
 
   return {
