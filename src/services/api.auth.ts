@@ -16,7 +16,7 @@ interface ICustomError {
 export const loginUser = async (login: ILogin) => {
   const getUrlResponse = async (login: ILogin) => {
     const { data } = await axios.post(
-      `${import.meta.env.VITE_API_BASE_URL}/login`,
+      `${import.meta.env.VITE_API_BASE_URL}/auth/login`,
       { ...login }
     )
     return data
@@ -47,7 +47,7 @@ export const logoutUser = async (token: string) => {
     }
     // TODO: send the post with token
     const { data } = await axios.get(
-      `${import.meta.env.VITE_API_BASE_URL}/logout`,
+      `${import.meta.env.VITE_API_BASE_URL}/auth/logout`,
       config
     )
     return data
@@ -62,7 +62,7 @@ export const logoutUser = async (token: string) => {
 export const registerUser = async (register: IRegister) => {
   const getUrlResponse = async (register: IRegister) => {
     const { data } = await axios.post(
-      `${import.meta.env.VITE_API_BASE_URL}/register`,
+      `${import.meta.env.VITE_API_BASE_URL}/auth/register`,
       { ...register }
     )
     return data
